@@ -4,25 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>氣泡排序法介紹</title>
+    <title>氣泡排序視覺化教學</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
-        pre { background: #f4f4f4; padding: 10px; border-radius: 4px; }
-        input[type="text"] { width: 300px; }
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .bar-container { display: flex; align-items: flex-end; height: 200px; margin-bottom: 20px; }
+        .bar { background: #4CAF50; width: 30px; margin-right: 5px; text-align: center; color: white; }
+        .bar.swapping { background: #f44336; }
         button { margin-left: 10px; }
     </style>
 </head>
 <body>
-    <h1>氣泡排序法 (Bubble Sort)</h1>
-    <p>氣泡排序是一種簡單的排序演算法，其基本想法是重複地遍歷要排序的清單，
-    比較相鄰元素並在它們的順序錯誤時交換。這樣較大的元素會像氣泡一樣逐步"浮"到清單的頂端，
-    因而得名。</p>
-    <h2>特性</h2>
-    <ul>
-        <li>時間複雜度：<code>O(n²)</code>（最壞、平均情況）</li>
-        <li>空間複雜度：<code>O(1)</code>，就地排序(in-place)</li>
-        <li>當清單已經排序時，可使用旗標優化提前結束</li>
-    </ul>
+    <h1>氣泡排序視覺化</h1>
+    <p>以下示範一個簡單的視覺化工具，讓你觀察氣泡排序如何透過比較與交換來整理數列。</p>
     <h2>Python 範例程式碼</h2>
     <pre><code>def bubble_sort(arr):
     """
@@ -34,39 +27,61 @@
     for i in range(n):
         swapped = False
         for j in range(0, n - i - 1):
-            if arr[j] &gt; arr[j + 1]:
+            if arr[j] > arr[j + 1]:
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
                 swapped = True
         if not swapped:
             break
     return arr
 </code></pre>
-    <h2>線上演示</h2>
-    <p>輸入一組用逗號分隔的數字，按下「排序」觀察結果：</p>
+
+    <h2>互動演示</h2>
     <input type="text" id="inputArray" placeholder="例如：5,3,8,1,2">
-    <button onclick="runBubble()">排序</button>
-    <p>結果：<span id="result"></span></p>
+    <button onclick="startVisualization()">開始排序</button>
+    <div class="bar-container" id="bars"></div>
 
     <script>
-        function bubbleSort(arr) {
+        function createBars(arr) {
+            const container = document.getElementById('bars');
+            container.innerHTML = '';
+            arr.forEach(value => {
+                const bar = document.createElement('div');
+                bar.className = 'bar';
+                bar.style.height = (value * 20) + 'px';
+                bar.textContent = value;
+                container.appendChild(bar);
+            });
+        }
+
+        async function bubbleSortVisual(arr) {
+            const bars = document.getElementById('bars').children;
             let n = arr.length;
             for (let i = 0; i < n; i++) {
                 let swapped = false;
                 for (let j = 0; j < n - i - 1; j++) {
+                    bars[j].classList.add('swapping');
+                    bars[j+1].classList.add('swapping');
+                    await new Promise(r => setTimeout(r, 300));
                     if (arr[j] > arr[j + 1]) {
                         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                        bars[j].style.height = (arr[j] * 20) + 'px';
+                        bars[j].textContent = arr[j];
+                        bars[j+1].style.height = (arr[j+1] * 20) + 'px';
+                        bars[j+1].textContent = arr[j+1];
                         swapped = true;
                     }
+                    bars[j].classList.remove('swapping');
+                    bars[j+1].classList.remove('swapping');
                 }
                 if (!swapped) break;
             }
-            return arr;
         }
-        function runBubble() {
+
+        function startVisualization() {
             const input = document.getElementById('inputArray').value;
             const arr = input.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x));
-            const sorted = bubbleSort(arr);
-            document.getElementById('result').textContent = sorted.join(', ');
+            createBars(arr);
+            bubbleSortVisual(arr);
         }
     </script>
 </body>
