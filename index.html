@@ -1,0 +1,65 @@
+def bubble_sort(arr):
+    """
+    Sorts an array using the bubble sort algorithm.
+    Time complexity: O(n²)
+    Space complexity: O(1)
+    
+    Args:
+        arr: The array to be sorted
+    
+    Returns:
+        The sorted array
+    """
+    n = len(arr)
+    
+    # Outer loop: perform n passes
+    for i in range(n):
+        # Flag to track if any swap occurred
+        swapped = False
+        
+        # Inner loop: compare adjacent elements
+        for j in range(0, n - i - 1):
+            # If the previous element is greater than the next, swap them
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+        
+        # If no swaps occurred, the array is sorted
+        if not swapped:
+            break
+    
+    return arr
+
+
+# Test cases
+if __name__ == "__main__":
+    # Test 1: Unsorted array
+    test_arr1 = [64, 34, 25, 12, 22, 11, 90]
+    print(f"Original array: {test_arr1}")
+    print(f"Sorted array: {bubble_sort(test_arr1.copy())}")
+    print()
+    
+    # Test 2: Already sorted array
+    test_arr2 = [1, 2, 3, 4, 5]
+    print(f"Original array: {test_arr2}")
+    print(f"Sorted array: {bubble_sort(test_arr2.copy())}")
+    print()
+    
+    # Test 3: Reverse sorted array
+    test_arr3 = [5, 4, 3, 2, 1]
+    print(f"Original array: {test_arr3}")
+    print(f"Sorted array: {bubble_sort(test_arr3.copy())}")
+    print()
+    
+    # Test 4: Array with duplicates
+    test_arr4 = [3, 1, 4, 1, 5, 9, 2, 6]
+    print(f"Original array: {test_arr4}")
+    print(f"Sorted array: {bubble_sort(test_arr4.copy())}")
+
+
+
+
+
+
+
+
