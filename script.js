@@ -1,4 +1,4 @@
-\let arr = [];
+let arr = [];
 let delay = 100;
 
 let compareCount = 0;
@@ -6,6 +6,9 @@ let swapCount = 0;
 
 // 初始化
 function resetArray() {
+  const bars = document.getElementById("bars");
+  if (!bars) return;
+
   arr = [];
   compareCount = 0;
   swapCount = 0;
@@ -21,14 +24,14 @@ function resetArray() {
 // 畫圖
 function drawBars(active = [], swapped = [], sorted = []) {
   const bars = document.getElementById("bars");
-  if (!bars) return; // 🔥 防止頁面沒有 bars 爆錯
+  if (!bars) return;
 
   bars.innerHTML = "";
 
   arr.forEach((v, i) => {
     const div = document.createElement("div");
     div.className = "bar";
-    div.style.height = v * 2 + "px";
+    div.style.height = (v * 2) + "px";
 
     if (active.includes(i)) div.classList.add("active");
     if (swapped.includes(i)) div.classList.add("swap");
@@ -58,7 +61,7 @@ async function startSort(type) {
   if (type === "selection") await selectionSort();
   if (type === "insertion") await insertionSort();
 
-  // 🔥 排序完成後全部標綠
+  // 排序完成全部變綠
   drawBars([], [], arr.map((_, i) => i));
 }
 
@@ -68,15 +71,15 @@ async function bubbleSort() {
     for (let j = 0; j < arr.length - i - 1; j++) {
 
       compareCount++;
-      drawBars([j, j+1]);
+      drawBars([j, j + 1]);
       updateStats();
       await sleep(delay);
 
       if (arr[j] > arr[j + 1]) {
         swapCount++;
-        [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
 
-        drawBars([], [j, j+1]);
+        drawBars([], [j, j + 1]);
         updateStats();
         await sleep(delay);
       }
@@ -111,14 +114,15 @@ async function selectionSort() {
   }
 }
 
-// Insertion Sort（🔥 修正：補比較次數）
+// Insertion Sort（🔥 已修正）
 async function insertionSort() {
   for (let i = 1; i < arr.length; i++) {
     let key = arr[i];
     let j = i - 1;
 
     while (j >= 0) {
-      compareCount++; // 🔥 每次比較都要算
+      compareCount++;
+
       if (arr[j] > key) {
         arr[j + 1] = arr[j];
 
@@ -135,13 +139,13 @@ async function insertionSort() {
     arr[j + 1] = key;
     swapCount++;
 
-    drawBars([], [j+1]);
+    drawBars([], [j + 1]);
     updateStats();
     await sleep(delay);
   }
 }
 
-// 頁面載入
-window.onload = () => {
+// 🔥 最重要：確保 DOM 完全載入後才執行
+document.addEventListener("DOMContentLoaded", function () {
   resetArray();
-};
+});
