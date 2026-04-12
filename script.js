@@ -1,4 +1,4 @@
-let arr = [];
+\let arr = [];
 let delay = 100;
 
 let compareCount = 0;
@@ -21,6 +21,8 @@ function resetArray() {
 // 畫圖
 function drawBars(active = [], swapped = [], sorted = []) {
   const bars = document.getElementById("bars");
+  if (!bars) return; // 🔥 防止頁面沒有 bars 爆錯
+
   bars.innerHTML = "";
 
   arr.forEach((v, i) => {
@@ -55,6 +57,9 @@ async function startSort(type) {
   if (type === "bubble") await bubbleSort();
   if (type === "selection") await selectionSort();
   if (type === "insertion") await insertionSort();
+
+  // 🔥 排序完成後全部標綠
+  drawBars([], [], arr.map((_, i) => i));
 }
 
 // Bubble Sort
@@ -106,21 +111,25 @@ async function selectionSort() {
   }
 }
 
-// Insertion Sort
+// Insertion Sort（🔥 修正：補比較次數）
 async function insertionSort() {
   for (let i = 1; i < arr.length; i++) {
     let key = arr[i];
     let j = i - 1;
 
-    while (j >= 0 && arr[j] > key) {
-      compareCount++;
-      arr[j + 1] = arr[j];
+    while (j >= 0) {
+      compareCount++; // 🔥 每次比較都要算
+      if (arr[j] > key) {
+        arr[j + 1] = arr[j];
 
-      drawBars([j]);
-      updateStats();
-      await sleep(delay);
+        drawBars([j]);
+        updateStats();
+        await sleep(delay);
 
-      j--;
+        j--;
+      } else {
+        break;
+      }
     }
 
     arr[j + 1] = key;
@@ -132,5 +141,7 @@ async function insertionSort() {
   }
 }
 
-// 頁面載入時自動產生
-window.onload = resetArray;
+// 頁面載入
+window.onload = () => {
+  resetArray();
+};
