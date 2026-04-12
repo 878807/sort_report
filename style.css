@@ -38,3 +38,25 @@ a {
   margin: 2px;
   background: cyan;
 }
+.info-box {
+  background: #1e293b;
+  padding: 20px;
+  margin: 20px auto;
+  width: 80%;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.info-box h2 {
+  color: #38bdf8;
+  margin-bottom: 10px;
+}
+
+.info-box p {
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+.info-box ul {
+  margin-top: 10px;
+}
