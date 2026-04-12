@@ -2,15 +2,26 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bubble Sort</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
 
 <h1>🫧 Bubble Sort</h1>
-<a href="index.html">← 回首頁</a>
+<a href="./index.html">← 回首頁</a>
 
+<!-- ✅ 統計（一定要有） -->
+<div>
+  比較次數：<span id="compare">0</span>
+  交換次數：<span id="swap">0</span>
+</div>
+
+<!-- ✅ 圖表 -->
 <div id="bars"></div>
+
+<!-- ✅ 說明 -->
 <div class="info-box">
   <h2>📘 氣泡排序法（Bubble Sort）</h2>
 
@@ -35,11 +46,14 @@
   </ul>
 </div>
 
+<!-- ✅ 控制按鈕 -->
 <div class="controls">
   <button onclick="startSort('bubble')">開始</button>
   <button onclick="resetArray()">重設</button>
 </div>
 
-<script src="script.js"></script>
+<!-- ✅ JS（路徑要正確） -->
+<script src="./script.js"></script>
+
 </body>
 </html>
