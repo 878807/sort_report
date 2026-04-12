@@ -1,88 +1,69 @@
-
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>氣泡排序視覺化教學</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .bar-container { display: flex; align-items: flex-end; height: 200px; margin-bottom: 20px; }
-        .bar { background: #4CAF50; width: 30px; margin-right: 5px; text-align: center; color: white; }
-        .bar.swapping { background: #f44336; }
-        button { margin-left: 10px; }
-    </style>
+<meta charset="UTF-8">
+<title>Sorting Algorithm Analysis</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
-    <h1>氣泡排序視覺化</h1>
-    <p>以下示範一個簡單的視覺化工具，讓你觀察氣泡排序如何透過比較與交換來整理數列。</p>
-    <h2>Python 範例程式碼</h2>
-    <pre><code>def bubble_sort(arr):
-    """
-    Sorts an array using the bubble sort algorithm.
-    Time complexity: O(n²)
-    Space complexity: O(1)
-    """
-    n = len(arr)
-    for i in range(n):
-        swapped = False
-        for j in range(0, n - i - 1):
-            if arr[j] > arr[j + 1]:
-                arr[j], arr[j + 1] = arr[j + 1], arr[j]
-                swapped = True
-        if not swapped:
-            break
-    return arr
-</code></pre>
 
-    <h2>互動演示</h2>
-    <input type="text" id="inputArray" placeholder="例如：5,3,8,1,2">
-    <button onclick="startVisualization()">開始排序</button>
-    <div class="bar-container" id="bars"></div>
+<header>
+<h1>📊 Sorting Algorithm Analysis</h1>
+<p>Performance Comparison of 5 Sorting Algorithms</p>
+</header>
 
-    <script>
-        function createBars(arr) {
-            const container = document.getElementById('bars');
-            container.innerHTML = '';
-            arr.forEach(value => {
-                const bar = document.createElement('div');
-                bar.className = 'bar';
-                bar.style.height = (value * 20) + 'px';
-                bar.textContent = value;
-                container.appendChild(bar);
-            });
-        }
+<section class="card">
+<h2>📌 Introduction</h2>
+<p>
+Sorting is a key operation in computer science. This project compares five algorithms in terms of performance and complexity.
+</p>
+</section>
 
-        async function bubbleSortVisual(arr) {
-            const bars = document.getElementById('bars').children;
-            let n = arr.length;
-            for (let i = 0; i < n; i++) {
-                let swapped = false;
-                for (let j = 0; j < n - i - 1; j++) {
-                    bars[j].classList.add('swapping');
-                    bars[j+1].classList.add('swapping');
-                    await new Promise(r => setTimeout(r, 300));
-                    if (arr[j] > arr[j + 1]) {
-                        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
-                        bars[j].style.height = (arr[j] * 20) + 'px';
-                        bars[j].textContent = arr[j];
-                        bars[j+1].style.height = (arr[j+1] * 20) + 'px';
-                        bars[j+1].textContent = arr[j+1];
-                        swapped = true;
-                    }
-                    bars[j].classList.remove('swapping');
-                    bars[j+1].classList.remove('swapping');
-                }
-                if (!swapped) break;
-            }
-        }
+<section class="card">
+<h2>⚙️ Algorithms</h2>
+<ul>
+<li>Bubble Sort</li>
+<li>Selection Sort</li>
+<li>Insertion Sort</li>
+<li>Merge Sort</li>
+<li>Quick Sort</li>
+</ul>
+</section>
 
-        function startVisualization() {
-            const input = document.getElementById('inputArray').value;
-            const arr = input.split(',').map(x => parseFloat(x.trim())).filter(x => !isNaN(x));
-            createBars(arr);
-            bubbleSortVisual(arr);
-        }
-    </script>
+<section class="card">
+<h2>📈 Complexity</h2>
+<table>
+<tr>
+<th>Algorithm</th><th>Best</th><th>Average</th><th>Worst</th>
+</tr>
+<tr><td>Bubble</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td></tr>
+<tr><td>Selection</td><td>O(n²)</td><td>O(n²)</td><td>O(n²)</td></tr>
+<tr><td>Insertion</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td></tr>
+<tr><td>Merge</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n log n)</td></tr>
+<tr><td>Quick</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n²)</td></tr>
+</table>
+</section>
+
+<section class="card">
+<h2>📊 Performance Chart</h2>
+<canvas id="chart"></canvas>
+</section>
+
+<section class="card">
+<h2>🧪 Conclusion</h2>
+<ul>
+<li>O(n²) algorithms are inefficient for large data</li>
+<li>Quick Sort performs best in most cases</li>
+<li>Merge Sort is stable but uses extra space</li>
+</ul>
+</section>
+
+<footer>
+<p>© 2026 Sorting Report</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
