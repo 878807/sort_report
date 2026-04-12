@@ -5,6 +5,7 @@ body {
   color: white;
 }
 
+/* 首頁 */
 .home {
   display: flex;
   justify-content: center;
@@ -12,6 +13,7 @@ body {
   height: 100vh;
 }
 
+/* 卡片 */
 .container {
   background: white;
   color: black;
@@ -19,12 +21,15 @@ body {
   border-radius: 10px;
 }
 
+/* 連結 */
 a {
   display: block;
   margin: 10px;
   color: blue;
+  text-decoration: none;
 }
 
+/* 排序圖 */
 #bars {
   display: flex;
   justify-content: center;
@@ -33,11 +38,27 @@ a {
   margin: 30px;
 }
 
+/* 每一條 */
 .bar {
-  width: 20px;
+  width: 15px;
   margin: 2px;
-  background: cyan;
+  background: steelblue;
 }
+
+/* 動畫顏色 */
+.active {
+  background: red;
+}
+
+.swap {
+  background: orange;
+}
+
+.sorted {
+  background: green;
+}
+
+/* 說明框 */
 .info-box {
   background: #1e293b;
   padding: 20px;
@@ -59,16 +80,4 @@ a {
 
 .info-box ul {
   margin-top: 10px;
-}
-#bars {
-  display: flex;
-  align-items: flex-end;
-  height: 300px;
-  margin: 20px;
-}
-
-.bar {
-  width: 15px;
-  margin: 2px;
-  background: steelblue;
 }
