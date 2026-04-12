@@ -2,24 +2,32 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Insertion Sort</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
 
 <h1>🔍 Insertion Sort</h1>
-<a href="index.html">← 回首頁</a>
+<a href="./index.html">← 回首頁</a>
 
+<!-- ✅ 統計（一定要） -->
+<div>
+  比較次數：<span id="compare">0</span>
+  交換次數：<span id="swap">0</span>
+</div>
+
+<!-- ✅ 圖表 -->
 <div id="bars"></div>
 
+<!-- ✅ 控制 -->
 <div class="controls">
   <button onclick="startSort('insertion')">開始</button>
   <button onclick="resetArray()">重設</button>
 </div>
 
-<script src="script.js"></script>
-</body>
-</html>
+<!-- ✅ 說明（放在 body 裡面‼️） -->
 <div class="info-box">
   <h2>📘 插入排序法（Insertion Sort）</h2>
 
@@ -43,3 +51,9 @@
     <li>空間複雜度：O(1)</li>
   </ul>
 </div>
+
+<!-- ✅ JS -->
+<script src="./script.js"></script>
+
+</body>
+</html>
