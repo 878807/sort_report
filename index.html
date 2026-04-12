@@ -1,69 +1,159 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<title>Sorting Algorithm Analysis</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>排序演算法教學</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI','Microsoft JhengHei', sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  min-height: 100vh;
+}
+
+/* 🔥 Header */
+header {
+  background: linear-gradient(135deg, #1e3a8a, #0ea5e9);
+  padding: 40px 20px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+header h1 {
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+}
+
+header p {
+  margin-top: 10px;
+  color: #bae6fd;
+}
+
+/* 🔥 主區 */
+.container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* 🔥 卡片 */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 16px;
+  padding: 24px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.card h2 {
+  margin-bottom: 10px;
+  color: #38bdf8;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-bottom: 20px;
+}
+
+/* 🔥 按鈕 */
+.btn {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.btn-blue {
+  background: #0ea5e9;
+  color: white;
+}
+
+.btn-orange {
+  background: #f97316;
+  color: white;
+}
+
+.btn-purple {
+  background: #8b5cf6;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+/* 🔥 footer */
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  color: #64748b;
+  font-size: 0.8rem;
+}
+</style>
+
 </head>
 
 <body>
 
 <header>
-<h1>📊 Sorting Algorithm Analysis</h1>
-<p>Performance Comparison of 5 Sorting Algorithms</p>
+  <h1>📊 排序演算法視覺化教學</h1>
+  <p>互動學習 Bubble / Selection / Insertion Sort</p>
 </header>
 
-<section class="card">
-<h2>📌 Introduction</h2>
-<p>
-Sorting is a key operation in computer science. This project compares five algorithms in terms of performance and complexity.
-</p>
-</section>
+<div class="container">
+  <div class="grid">
 
-<section class="card">
-<h2>⚙️ Algorithms</h2>
-<ul>
-<li>Bubble Sort</li>
-<li>Selection Sort</li>
-<li>Insertion Sort</li>
-<li>Merge Sort</li>
-<li>Quick Sort</li>
-</ul>
-</section>
+    <!-- Bubble -->
+    <div class="card">
+      <h2>🫧 Bubble Sort</h2>
+      <p>反覆比較相鄰元素，將最大值「冒泡」到最後。</p>
+      <a href="bubble-sort.html" class="btn btn-blue">進入學習</a>
+    </div>
 
-<section class="card">
-<h2>📈 Complexity</h2>
-<table>
-<tr>
-<th>Algorithm</th><th>Best</th><th>Average</th><th>Worst</th>
-</tr>
-<tr><td>Bubble</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td></tr>
-<tr><td>Selection</td><td>O(n²)</td><td>O(n²)</td><td>O(n²)</td></tr>
-<tr><td>Insertion</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td></tr>
-<tr><td>Merge</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n log n)</td></tr>
-<tr><td>Quick</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n²)</td></tr>
-</table>
-</section>
+    <!-- Selection -->
+    <div class="card">
+      <h2>🔍 Selection Sort</h2>
+      <p>每一輪找最小值，放到正確位置。</p>
+      <a href="selection-sort.html" class="btn btn-orange">進入學習</a>
+    </div>
 
-<section class="card">
-<h2>📊 Performance Chart</h2>
-<canvas id="chart"></canvas>
-</section>
+    <!-- Insertion -->
+    <div class="card">
+      <h2>📌 Insertion Sort</h2>
+      <p>逐步插入元素到已排序區域。</p>
+      <a href="insertion-sort.html" class="btn btn-purple">進入學習</a>
+    </div>
 
-<section class="card">
-<h2>🧪 Conclusion</h2>
-<ul>
-<li>O(n²) algorithms are inefficient for large data</li>
-<li>Quick Sort performs best in most cases</li>
-<li>Merge Sort is stable but uses extra space</li>
-</ul>
-</section>
+  </div>
+</div>
 
 <footer>
-<p>© 2026 Sorting Report</p>
+  © 2026 Sorting Algorithm Project | GitHub Pages
 </footer>
 
-<script src="script.js"></script>
 </body>
 </html>
