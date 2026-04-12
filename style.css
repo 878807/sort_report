@@ -29,7 +29,7 @@ a {
   text-decoration: none;
 }
 
-/* 排序圖 */
+/* 排序圖容器 */
 #bars {
   display: flex;
   justify-content: center;
@@ -38,11 +38,13 @@ a {
   margin: 30px;
 }
 
-/* 每一條 */
+/* 柱子（🔥 關鍵修正） */
 .bar {
   width: 15px;
   margin: 2px;
   background: steelblue;
+  display: inline-block;   /* 🔥 一定要有 */
+  min-height: 5px;         /* 🔥 防止看不到 */
 }
 
 /* 動畫顏色 */
@@ -56,6 +58,19 @@ a {
 
 .sorted {
   background: green;
+}
+
+/* 控制按鈕 */
+.controls {
+  margin-top: 20px;
+}
+
+button {
+  padding: 8px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 /* 說明框 */
