@@ -61,7 +61,7 @@ async function startSort(type) {
   if (type === "selection") await selectionSort();
   if (type === "insertion") await insertionSort();
 
-  // 排序完成全部變綠
+  // 排序完成標綠
   drawBars([], [], arr.map((_, i) => i));
 }
 
@@ -114,7 +114,7 @@ async function selectionSort() {
   }
 }
 
-// Insertion Sort（🔥 已修正）
+// Insertion Sort
 async function insertionSort() {
   for (let i = 1; i < arr.length; i++) {
     let key = arr[i];
@@ -145,7 +145,9 @@ async function insertionSort() {
   }
 }
 
-// 🔥 最重要：確保 DOM 完全載入後才執行
+// 🔥 關鍵：確保畫面載入完成才畫圖（GitHub Pages 修正）
 document.addEventListener("DOMContentLoaded", function () {
-  resetArray();
+  setTimeout(() => {
+    resetArray();
+  }, 50);
 });
