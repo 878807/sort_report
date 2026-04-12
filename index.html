@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>排序演算法教學</title>
+<title>排序演算法視覺化平台</title>
 
 <style>
 * {
@@ -14,59 +14,76 @@
 
 body {
   font-family: 'Segoe UI','Microsoft JhengHei', sans-serif;
-  background: #0f172a;
+  background: #020617;
   color: #e2e8f0;
-  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* 🌌 動畫背景 */
+.bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 20%, #0ea5e9 0%, transparent 40%),
+              radial-gradient(circle at 80% 60%, #8b5cf6 0%, transparent 40%);
+  z-index: -1;
+  animation: moveBg 10s infinite alternate;
+}
+
+@keyframes moveBg {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(-50px, -50px); }
 }
 
 /* 🔥 Header */
 header {
-  background: linear-gradient(135deg, #1e3a8a, #0ea5e9);
-  padding: 40px 20px;
   text-align: center;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  padding: 60px 20px;
 }
 
 header h1 {
-  font-size: 2.2rem;
-  letter-spacing: 2px;
+  font-size: 2.5rem;
+  background: linear-gradient(90deg,#38bdf8,#8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 header p {
   margin-top: 10px;
-  color: #bae6fd;
+  color: #94a3b8;
 }
 
-/* 🔥 主區 */
+/* 📦 主區 */
 .container {
-  max-width: 1100px;
-  margin: 40px auto;
+  max-width: 1200px;
+  margin: auto;
   padding: 20px;
 }
 
-/* 🔥 卡片 */
+/* 🔲 卡片 */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  gap: 25px;
 }
 
 .card {
-  background: #1e293b;
-  border: 1px solid #334155;
-  border-radius: 16px;
-  padding: 24px;
-  transition: transform 0.2s, box-shadow 0.2s;
+  background: rgba(30,41,59,0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(148,163,184,0.2);
+  border-radius: 20px;
+  padding: 25px;
+  transition: 0.3s;
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
 }
 
 .card h2 {
-  margin-bottom: 10px;
   color: #38bdf8;
+  margin-bottom: 10px;
 }
 
 .card p {
@@ -75,84 +92,130 @@ header p {
   margin-bottom: 20px;
 }
 
-/* 🔥 按鈕 */
+/* 🔘 按鈕 */
 .btn {
   display: inline-block;
-  padding: 10px 18px;
+  padding: 10px 20px;
   border-radius: 999px;
   text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: bold;
   transition: 0.2s;
 }
 
-.btn-blue {
-  background: #0ea5e9;
-  color: white;
-}
-
-.btn-orange {
-  background: #f97316;
-  color: white;
-}
-
-.btn-purple {
-  background: #8b5cf6;
-  color: white;
-}
-
 .btn:hover {
-  opacity: 0.85;
+  opacity: 0.8;
 }
 
-/* 🔥 footer */
-footer {
+.blue { background:#0ea5e9; color:white; }
+.orange { background:#f97316; color:white; }
+.purple { background:#8b5cf6; color:white; }
+
+/* 📊 效能區 */
+.section {
+  margin-top: 60px;
   text-align: center;
-  margin-top: 40px;
-  padding: 20px;
-  color: #64748b;
+}
+
+.section h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+/* 📊 圖表 */
+.chart {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 40px;
+  height: 250px;
+}
+
+.bar {
+  width: 60px;
+  background: linear-gradient(to top,#0ea5e9,#8b5cf6);
+  border-radius: 10px 10px 0 0;
+  position: relative;
+  animation: grow 1s ease;
+}
+
+@keyframes grow {
+  from { height: 0; }
+}
+
+.label {
+  position: absolute;
+  bottom: -25px;
+  width: 100%;
+  text-align: center;
   font-size: 0.8rem;
 }
-</style>
 
+/* 🔚 footer */
+footer {
+  text-align: center;
+  margin-top: 60px;
+  padding: 20px;
+  color: #64748b;
+}
+</style>
 </head>
 
 <body>
 
+<div class="bg"></div>
+
 <header>
-  <h1>📊 排序演算法視覺化教學</h1>
-  <p>互動學習 Bubble / Selection / Insertion Sort</p>
+  <h1>📊 排序演算法視覺化平台</h1>
+  <p>互動學習 × 演算法分析 × 效能比較</p>
 </header>
 
 <div class="container">
+
+  <!-- 🔥 三大排序 -->
   <div class="grid">
 
-    <!-- Bubble -->
     <div class="card">
       <h2>🫧 Bubble Sort</h2>
-      <p>反覆比較相鄰元素，將最大值「冒泡」到最後。</p>
-      <a href="bubble-sort.html" class="btn btn-blue">進入學習</a>
+      <p>透過相鄰交換讓最大值浮到最後。</p>
+      <a href="bubble-sort.html" class="btn blue">開始學習</a>
     </div>
 
-    <!-- Selection -->
     <div class="card">
       <h2>🔍 Selection Sort</h2>
-      <p>每一輪找最小值，放到正確位置。</p>
-      <a href="selection-sort.html" class="btn btn-orange">進入學習</a>
+      <p>每輪選最小值並交換位置。</p>
+      <a href="selection-sort.html" class="btn orange">開始學習</a>
     </div>
 
-    <!-- Insertion -->
     <div class="card">
       <h2>📌 Insertion Sort</h2>
-      <p>逐步插入元素到已排序區域。</p>
-      <a href="insertion-sort.html" class="btn btn-purple">進入學習</a>
+      <p>將元素插入已排序區域。</p>
+      <a href="insertion-sort.html" class="btn purple">開始學習</a>
     </div>
 
   </div>
+
+  <!-- 📊 效能比較 -->
+  <div class="section">
+    <h2>⚡ 排序效能比較 (時間複雜度)</h2>
+
+    <div class="chart">
+      <div class="bar" style="height: 200px;">
+        <div class="label">Bubble<br>O(n²)</div>
+      </div>
+      <div class="bar" style="height: 200px;">
+        <div class="label">Selection<br>O(n²)</div>
+      </div>
+      <div class="bar" style="height: 120px;">
+        <div class="label">Insertion<br>Best O(n)</div>
+      </div>
+    </div>
+
+  </div>
+
 </div>
 
 <footer>
-  © 2026 Sorting Algorithm Project | GitHub Pages
+  © 2026 Sorting Algorithm Final Project
 </footer>
 
 </body>
